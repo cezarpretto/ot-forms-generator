@@ -7,7 +7,7 @@
   */
   module
   	.run(['$templateCache', function($templateCache) {
-	$templateCache.put('ot-files-view.html', '<div class=row><div class=col-sm-12><div class="panel panel-default"><form name=frmSearch><div class=panel-body><div class=row><div class="{{field.columnClass || \'col-lg-4 col-sm-6 col-xs-12\'}}" ng-repeat="field in config.fields"><div class=input-group><span class=input-group-addon>{{field.name}}:</span><input class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if=isTypeText(field.type) required><input class="{{field.inputClass || \'form-control\'}}" type=phone ng-model=config.models[field.model] ng-if="field.type === \'date\'" required ot-date-mask=""><select class="{{field.inputClass || \'form-control\'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model=config.models[field.model] ng-if="field.type === \'options\'" required></select><textarea class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'textArea\'" required></textarea><input class=checkbox type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'checkbox\'"></div><br></div></div><div class=row><div class="col-lg-12 col-sm-12 col-xs-12"><button class="btn btn-primary btn-sm pull-right" ng-click=config.search.function() ng-disabled=frmSearch.$invalid>{{config.search.label}}</button></div></div><div class=row><ng-transclude></ng-transclude></div></div></form></div></div></div>');
+	$templateCache.put('ot-files-view.html', '<div class=row><div class=col-sm-12><div class="panel panel-default"><form name=frmSearch><div class=panel-body><div class=row><div class="{{field.columnClass || \'col-lg-4 col-sm-6 col-xs-12\'}}" ng-repeat="field in config.fields"><div class=input-group><span class=input-group-addon>{{field.name}}:</span><input class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if=isTypeText(field.type) required><input class="{{field.inputClass || \'form-control\'}}" type=phone ng-model=config.models[field.model] ng-if="field.type === \'date\'" required fd-date-mask=""><select class="{{field.inputClass || \'form-control\'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model=config.models[field.model] ng-if="field.type === \'options\'" required></select><textarea class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'textArea\'" required></textarea><input class=checkbox type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'checkbox\'"></div><br></div></div><div class=row><div class="col-lg-12 col-sm-12 col-xs-12"><button class="btn btn-primary btn-sm pull-right" ng-click=config.search.function() ng-disabled=frmSearch.$invalid>{{config.search.label}}</button></div></div><div class=row><ng-transclude></ng-transclude></div></div></form></div></div></div>');
 }])
 
   	.directive('otForm', ['$templateCache', function($templateCache){
@@ -30,7 +30,7 @@
   				};
   			}
   		};
-  	}]).directive('otDateMask', ['$filter', function($filter) {
+  	}]).directive('fdDateMask', ['$filter', function($filter) {
       return {
         require: "ngModel",
         link: function(scope, element, attrs, ctrl) {

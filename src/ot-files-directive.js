@@ -25,7 +25,7 @@ angular.module('ot-forms-generator', [])
 				};
 			}
 		};
-	}]).directive('otDateMask', ['$filter', function($filter) {
+	}]).directive('fdDateMask', ['$filter', function($filter) {
     return {
       require: "ngModel",
       link: function(scope, element, attrs, ctrl) {

@@ -10,7 +10,7 @@
 
 								<input class="{{field.inputClass || 'form-control'}}" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="isTypeText(field.type)" required="{{field.required}}" />
 
-								<input class="{{field.inputClass || 'form-control'}}" type="phone" ng-model="config.models[field.model]" ng-if="field.type === 'date'" required="{{field.required}}" ot-date-mask />
+								<input class="{{field.inputClass || 'form-control'}}" type="phone" ng-model="config.models[field.model]" ng-if="field.type === 'date'" required="{{field.required}}" fd-date-mask />
 
 								<select class="{{field.inputClass || 'form-control'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model="config.models[field.model]" ng-if="field.type === 'options'" required="{{field.required}}"></select>
 

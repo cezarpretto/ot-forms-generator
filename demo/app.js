@@ -8,26 +8,32 @@ angular.module('demo-app', ['ot-forms-generator'])
 		$scope.posts = [];
 		$scope.config = {
 			fields: [
-				{
-					name: 'Post ID', type: 'text', model: 'postId', columnClass: 'col-lg-2 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+        {
+					name: 'Emitente', type: 'options', model: 'emitente', labelName: 'descricao', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', options: [
+            {descricao: 'Emissão Própria', value: '0'},
+            {descricao: 'Emissão de Terceiros', value: '1'}
+          ]
 				},
 				{
-					name: 'Título', type: 'text', model: 'title', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm'
+					name: 'Numeração Inicial', type: 'text', model: 'nrIni', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+				},
+        {
+					name: 'Numeração Final', type: 'text', model: 'nrFin', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
 				},
 				{
-					name: 'Data', type: 'date', model: 'dtIni', columnClass: 'col-lg-6 col-sm-6 col-xs-12', inputClass: 'form-control input-sm'
+					name: 'Emissão de', type: 'date', model: 'dtIni', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
 				},
-				// {
-				// 	name: 'Checar', type: 'checkbox', model: 'checked', columnClass: 'col-lg-1 col-sm-6 col-xs-12', inputClass: 'form-control input-sm'
-				// },
-				// {
-				// 	name: 'Tipo', type: 'options', model: 'tipo', labelName: 'title', columnClass: 'col-lg-5 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', options: []
-				// }
+        {
+					name: 'Até', type: 'date', model: 'dtFin', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+				},
+        {
+					name: 'Série/ECF', type: 'text', model: 'serie', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+				},
+        {
+					name: 'Valor', type: 'text', model: 'valor', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+				}
 			],
-			search: {label: 'Pesquisar', function: teste},
-			delete: {label: 'Deletar', function: teste},
-			download: {label: 'Download', function: teste},
-			preview: {label: 'Visualizar', function: teste}
+			search: {label: 'Pesquisar', function: teste}
 		};
 
 		// (function(){
