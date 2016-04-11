@@ -1,0 +1,26 @@
+{
+  "name": "ot-files-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cezarpretto/ot-files-manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cezarpretto/ot-files-manager/issues"
+  },
+  "homepage": "https://github.com/cezarpretto/ot-files-manager#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-angular-builder": "^0.5.2",
+    "grunt-angular-inline-templates": "0.0.2",
+    "grunt-contrib-clean": "^1.0.0",
+    "live-server": "^0.9.2"
+  }
+}

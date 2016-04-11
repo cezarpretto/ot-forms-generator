@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="demo-app">
+<head>
+	<title>Ot Files Manager demo</title>
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller="mainCtrl">
+	<div class="container">
+		<h1>Example</h1>
+		<ot-form config="config">
+			<table class="table table-striped table-hover table-condensed">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="post in posts">
+						<td>{{post.id}}</td>
+						<td>{{post.title}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</ot-form>
+	</div>
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="../build/ot-files-directive-release.js"></script>
+<!-- <script src="../src/ot-files-directive.js"></script> -->
+</body>
+</html>
