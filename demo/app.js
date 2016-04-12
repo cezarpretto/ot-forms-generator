@@ -30,10 +30,10 @@ angular.module('demo-app', ['ot-forms-generator'])
 					name: 'Série/ECF', type: 'text', model: 'serie', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
 				},
         {
-					name: 'Valor', type: 'text', model: 'valor', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Valor', type: 'currency', model: 'valor', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
 				}
 			],
-			search: {label: 'Pesquisar', function: teste}
+			submit: {label: 'Pesquisar', function: teste}
 		};
 
 		// (function(){
@@ -47,7 +47,7 @@ angular.module('demo-app', ['ot-forms-generator'])
 
 		function teste () {
 			console.log('Carregando. Aguarde...')
-			$http.get('http://jsonplaceholder.typicode.com/posts/' + $scope.config.models.postId).then(function (data) {
+			$http.get('http://jsonplaceholder.typicode.com/posts/').then(function (data) {
 			 if(Array.isArray(data.data)){
 			 	$scope.posts = data.data;
 			 }else{
