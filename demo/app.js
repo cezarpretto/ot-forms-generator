@@ -9,31 +9,40 @@ angular.module('demo-app', ['ot-forms-generator'])
 		$scope.config = {
 			fields: [
         {
-					name: 'Emitente', type: 'options', model: 'emitente', labelName: 'descricao', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', options: [
+					name: 'Emitente', type: 'options', model: 'emitente', labelName: 'descricao', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true', options: [
             {descricao: 'Emissão Própria', value: '0'},
             {descricao: 'Emissão de Terceiros', value: '1'}
           ]
 				},
 				{
-					name: 'Numeração Inicial', type: 'text', model: 'nrIni', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Numeração Inicial', type: 'text', model: 'nrIni', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
 				},
         {
-					name: 'Numeração Final', type: 'text', model: 'nrFin', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Numeração Final', type: 'text', model: 'nrFin', columnClass: 'col-lg-4 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
 				},
 				{
-					name: 'Emissão de', type: 'date', model: 'dtIni', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Emissão de', type: 'date', model: 'dtIni', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
 				},
         {
-					name: 'Até', type: 'date', model: 'dtFin', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Até', type: 'date', model: 'dtFin', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
 				},
         {
-					name: 'Série/ECF', type: 'text', model: 'serie', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Série/ECF', type: 'text', model: 'serie', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
 				},
         {
-					name: 'Valor', type: 'currency', model: 'valor', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'required'
+					name: 'Valor', type: 'currency', model: 'valor', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
 				}
 			],
 			submit: {label: 'Pesquisar', function: teste}
+		};
+
+		$scope.configUpload = {
+			fields: [
+				{
+					name: 'Arquivo', type: 'file', fileSize: '61440', multiple: 'true', accept:'application/pdf, application/xml', model: 'file', columnClass: 'col-lg-3 col-sm-6 col-xs-12', inputClass: 'form-control input-sm', required: 'true'
+				}
+			],
+			submit: {label: 'Upload', function: upload}
 		};
 
 		// (function(){
@@ -44,6 +53,10 @@ angular.module('demo-app', ['ot-forms-generator'])
 		// 		 console.error(err);
 		// 	})
 		// }());
+
+		function upload(){
+			console.log($scope.configUpload.models.file);
+		};
 
 		function teste () {
 			console.log('Carregando. Aguarde...')

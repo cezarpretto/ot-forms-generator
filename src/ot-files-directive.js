@@ -17,7 +17,7 @@ angular.module('ot-forms-generator', [])
       link: function postLink(scope, element, attrs, controller) {
         scope.config.models = {};
         scope.isTypeText = function(type) {
-          if (type !== 'options' && type !== 'textArea' && type !== 'checkbox' && type !== 'date' && type !== 'currency') {
+          if (type !== 'options' && type !== 'textArea' && type !== 'checkbox' && type !== 'date' && type !== 'currency' && type !== 'file') {
             return true;
           } else {
             return false;

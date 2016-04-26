@@ -3,17 +3,21 @@
 Instalation:
 
 ```bash
-$ bower install ot-files-manager --save
+$ bower install ot-forms-generator --save
 ```
 
 ```javascript
-angular.module('your-module', ['ot-files-manager']);
+angular.module('your-module', ['ot-forms-generator']);
 ```
+
+How to use:
+
+
 
 Contribute:
 
 ```bash
-$ git clone https://github.com/cezarpretto/ot-files-manager.git
+$ git clone https://github.com/cezarpretto/ot-forms-generator.git
 ```
 
 ```bash

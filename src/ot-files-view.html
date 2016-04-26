@@ -8,18 +8,21 @@
 							<div class="input-group">
 								<span class="input-group-addon">{{field.name}}:</span>
 
-								<input class="{{field.inputClass || 'form-control'}}" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="isTypeText(field.type)" required="{{field.required}}" />
+								<input class="{{field.inputClass || 'form-control'}}" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="isTypeText(field.type)" ng-required="{{field.required}}" />
 
-								<input class="{{field.inputClass || 'form-control'}}" type="phone" ng-model="config.models[field.model]" ng-if="field.type === 'date'" required="{{field.required}}" fd-date-mask />
+								<input class="{{field.inputClass || 'form-control'}}" type="phone" ng-model="config.models[field.model]" ng-if="field.type === 'date'" ng-required="{{field.required}}" fd-date-mask />
 
-								<input class="{{field.inputClass || 'form-control'}}" type="phone" ng-model="config.models[field.model]" ng-if="field.type === 'currency'" required="{{field.required}}" money-mask />
+								<input class="{{field.inputClass || 'form-control'}}" type="phone" ng-model="config.models[field.model]" ng-if="field.type === 'currency'" ng-required="{{field.required}}" money-mask />
 
-								<select class="{{field.inputClass || 'form-control'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model="config.models[field.model]" ng-if="field.type === 'options'" required="{{field.required}}"></select>
+								<input class="{{field.inputClass || 'form-control'}}" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="field.type === 'file'" ng-required="{{field.required}}" ot-file-upload accept="{{field.accept}}" otf-multiple="{{field.multiple}}" file-size="{{field.fileSize}}" />
 
-								<textarea class="{{field.inputClass || 'form-control'}}" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="field.type === 'textArea'" required="{{field.required}}"></textarea>
+								<select class="{{field.inputClass || 'form-control'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model="config.models[field.model]" ng-if="field.type === 'options'" ng-required="{{field.required}}"></select>
+
+								<textarea class="{{field.inputClass || 'form-control'}}" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="field.type === 'textArea'" ng-required="{{field.required}}"></textarea>
 
 								<input class="checkbox" type="{{field.type}}" ng-model="config.models[field.model]" ng-if="field.type === 'checkbox'" />
 							</div>
+							<span ng-if="field.type === 'file'">Tamanho máximo do arquivo: {{field.fileSize / 1024}} KB</span>
 							<br>
 						</div>
 					</div>

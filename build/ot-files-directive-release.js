@@ -7,7 +7,7 @@
    */
   module
     .run(['$templateCache', function($templateCache) {
-	$templateCache.put('ot-files-view.html', '<div class=row><div class=col-sm-12><div class="panel panel-default"><form name=frmSearch ng-submit=config.submit.function()><div class=panel-body><div class=row><div class="{{field.columnClass || \'col-lg-4 col-sm-6 col-xs-12\'}}" ng-repeat="field in config.fields"><div class=input-group><span class=input-group-addon>{{field.name}}:</span><input class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if=isTypeText(field.type) required><input class="{{field.inputClass || \'form-control\'}}" type=phone ng-model=config.models[field.model] ng-if="field.type === \'date\'" required fd-date-mask=""><input class="{{field.inputClass || \'form-control\'}}" type=phone ng-model=config.models[field.model] ng-if="field.type === \'currency\'" required money-mask=""><select class="{{field.inputClass || \'form-control\'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model=config.models[field.model] ng-if="field.type === \'options\'" required></select><textarea class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'textArea\'" required></textarea><input class=checkbox type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'checkbox\'"></div><br></div></div><div class=row><div class="col-lg-12 col-sm-12 col-xs-12"><button class="btn btn-primary btn-sm pull-right" ng-disabled=frmSearch.$invalid>{{config.submit.label}}</button></div></div><div class=row><ng-transclude></ng-transclude></div></div></form></div></div></div>');
+	$templateCache.put('ot-files-view.html', '<div class=row><div class=col-sm-12><div class="panel panel-default"><form name=frmSearch ng-submit=config.submit.function()><div class=panel-body><div class=row><div class="{{field.columnClass || \'col-lg-4 col-sm-6 col-xs-12\'}}" ng-repeat="field in config.fields"><div class=input-group><span class=input-group-addon>{{field.name}}:</span><input class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if=isTypeText(field.type) ng-required={{field.required}}><input class="{{field.inputClass || \'form-control\'}}" type=phone ng-model=config.models[field.model] ng-if="field.type === \'date\'" ng-required={{field.required}} fd-date-mask=""><input class="{{field.inputClass || \'form-control\'}}" type=phone ng-model=config.models[field.model] ng-if="field.type === \'currency\'" ng-required={{field.required}} money-mask=""><input class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'file\'" ng-required={{field.required}} ot-file-upload="" accept={{field.accept}} otf-multiple={{field.multiple}} file-size={{field.fileSize}}><select class="{{field.inputClass || \'form-control\'}}" ng-options="option as option.{{field.labelName}} for option in field.options" ng-model=config.models[field.model] ng-if="field.type === \'options\'" ng-required={{field.required}}></select><textarea class="{{field.inputClass || \'form-control\'}}" type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'textArea\'" ng-required={{field.required}}></textarea><input class=checkbox type={{field.type}} ng-model=config.models[field.model] ng-if="field.type === \'checkbox\'"></div><span ng-if="field.type === \'file\'">Tamanho m\xE1ximo do arquivo: {{field.fileSize / 1024}} KB</span><br></div></div><div class=row><div class="col-lg-12 col-sm-12 col-xs-12"><button class="btn btn-primary btn-sm pull-right" ng-disabled=frmSearch.$invalid>{{config.submit.label}}</button></div></div><div class=row><ng-transclude></ng-transclude></div></div></form></div></div></div>');
 }])
 
     .directive('otForm', ['$templateCache', function($templateCache) {
@@ -22,7 +22,7 @@
         link: function postLink(scope, element, attrs, controller) {
           scope.config.models = {};
           scope.isTypeText = function(type) {
-            if (type !== 'options' && type !== 'textArea' && type !== 'checkbox' && type !== 'date' && type !== 'currency') {
+            if (type !== 'options' && type !== 'textArea' && type !== 'checkbox' && type !== 'date' && type !== 'currency' && type !== 'file') {
               return true;
             } else {
               return false;
@@ -374,6 +374,38 @@
   	    }
   	  };
   	}
+
+  module
+    .directive('otFileUpload', function($compile){
+      return{
+        require: "ngModel",
+        restrict: 'A',
+        // template: template,
+        link: function(scope, element, attrs, ctrl){
+          if(attrs.otfMultiple){
+            element[0].setAttribute('multiple', '');
+          }
+          var types = attrs.accept.split(',');
+          element.bind('change', function(){
+            for (var j = 0; j < element[0].files.length; j++) {
+              var aux = false;
+              var retorno = element[0].files;
+              for (var i = 0; i < types.length; i++) {
+                if(types[i] === element[0].files[j].type && element[0].files[j].size <= attrs.fileSize){
+                  aux = true;
+                }
+              }
+              if(!aux){
+                element[0].value = null;
+                retorno = undefined;
+              }
+            }
+            ctrl.$setViewValue(retorno);
+            ctrl.$render();
+          });
+        }
+      }
+    });
 
 
 }) (angular.module ('ot-forms-generator', []));
